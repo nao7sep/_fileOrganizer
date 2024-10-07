@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_fileOrganizer"
         mc:Ignorable="d"
-        Title="MainWindow" Width="800" Height="450">
+        Title="_fileOrganizer" Width="800" Height="450">
     <Grid>
     </Grid>
 </Window>
