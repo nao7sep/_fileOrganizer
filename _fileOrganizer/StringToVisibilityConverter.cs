@@ -4,7 +4,6 @@ using System.Windows.Data;
 
 namespace _fileOrganizer
 {
-    [ValueConversion (typeof (string), typeof (Visibility))]
     public class StringToVisibilityConverter: IValueConverter
     {
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)

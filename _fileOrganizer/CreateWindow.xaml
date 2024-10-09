@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:_fileOrganizer"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <local:CreateWindowViewModel />
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
