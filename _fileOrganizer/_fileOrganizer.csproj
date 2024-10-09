@@ -7,7 +7,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
 
-        <AssemblyName></AssemblyName>
+        <!--
+            AssemblyName is required to resolve missing type errors in XAML.
+            https://stackoverflow.com/questions/54622863/how-to-resolve-missing-type-errors-in-xaml
+        -->
+
+        <AssemblyName>_fileOrganizer</AssemblyName>
         <AssemblyTitle></AssemblyTitle>
 
         <Company>Yoshinao Inoguchi</Company>

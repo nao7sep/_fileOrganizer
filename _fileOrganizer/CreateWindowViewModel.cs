@@ -22,9 +22,6 @@ namespace _fileOrganizer
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected virtual void OnPropertyChanged (string propertyName)
-        {
-            PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));
-        }
+        protected virtual void OnPropertyChanged (string propertyName) => PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));
     }
 }
