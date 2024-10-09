@@ -4,12 +4,14 @@
         xmlns:local="clr-namespace:_fileOrganizer"
         StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!-- MainWindow -->
+
         <Style TargetType="Grid">
             <Setter Property="Margin" Value="5" />
         </Style>
 
-        <Style x:Key="ListBoxLabelStyle" TargetType="Label">
-            <Setter Property="Margin" Value="10,5" />
+        <Style x:Key="VerticalLabelStyle" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
             <Setter Property="Padding" Value="0" />
         </Style>
 
@@ -19,11 +21,44 @@
 
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5" />
-            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Padding" Value="5" />
         </Style>
 
         <Style x:Key="ButtonsStackPanelStyle" TargetType="StackPanel">
             <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+
+        <!-- CreateWindow -->
+
+        <Style x:Key="MessageTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style x:Key="HorizontalLabelStyle" TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+
+        <!--
+            TextBoxes come with a default padding of around 8 pixels depending on the anti-aliasing settings.
+            https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/textbox-styles-and-templates
+            https://stackoverflow.com/questions/16424739/textbox-template-padding-issue
+        -->
+
+        <Style x:Key="HorizontalTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style x:Key="ErrorMessageTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
     </Application.Resources>
 </Application>
