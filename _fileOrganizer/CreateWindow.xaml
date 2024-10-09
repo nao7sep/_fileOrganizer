@@ -22,7 +22,10 @@
         <TextBlock x:Name="MessageTextBlock" Grid.ColumnSpan="2" Grid.Row="0" Style="{StaticResource MessageTextBlockStyle}" />
         <Label Content="Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource HorizontalLabelStyle}" />
         <TextBox x:Name="NameTextBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource HorizontalTextBoxStyle}" />
-        <TextBlock x:Name="ErrorMessageTextBlock" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ErrorMessageTextBlockStyle}" />
+
+        <TextBlock x:Name="ErrorMessageTextBlock" Text="{Binding ErrorMessage}"
+                   Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}"
+                   Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource ErrorMessageTextBlockStyle}" />
 
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="CreateButton" Content="Create" />

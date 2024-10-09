@@ -1,8 +1,8 @@
 ﻿<Application x:Class="_fileOrganizer.App"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:_fileOrganizer"
-        StartupUri="MainWindow.xaml">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:_fileOrganizer"
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- MainWindow -->
 
@@ -60,5 +60,9 @@
             <Setter Property="Foreground" Value="Red" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
+
+        <!-- Converters -->
+
+        <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
     </Application.Resources>
 </Application>

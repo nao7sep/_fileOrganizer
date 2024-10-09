@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 
 namespace _fileOrganizer
 {
@@ -10,6 +10,7 @@ namespace _fileOrganizer
         public CreateWindow ()
         {
             InitializeComponent ();
+            DataContext = new CreateWindowViewModel ();
         }
     }
 }
