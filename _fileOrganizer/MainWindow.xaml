@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_fileOrganizer"
         mc:Ignorable="d"
-        Title="_fileOrganizer" Width="1280" Height="720">
+        Title="_fileOrganizer" Width="1024" Height="512">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -65,8 +65,8 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="3" Style="{StaticResource ButtonsStackPanelStyle}">
-            <Button x:Name="MoveFilesButton" Content="Move to Destination" />
-            <Button x:Name="CopyFilesButton" Content="Copy to Destination" />
+            <Button x:Name="MoveFilesButton" Content="Move" />
+            <Button x:Name="CopyFilesButton" Content="Copy" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">

@@ -70,6 +70,24 @@ namespace _fileOrganizer
             }
         }
 
+        private bool _canCreate;
+
+        public bool CanCreate
+        {
+            get => _canCreate;
+
+            set
+            {
+                if (_canCreate != value)
+                {
+                    _canCreate = value;
+                    OnPropertyChanged (nameof (CanCreate));
+                }
+            }
+        }
+
+        public bool? IsCreated { get; set; }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged (string propertyName) => PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));

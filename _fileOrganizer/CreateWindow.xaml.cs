@@ -16,6 +16,22 @@ namespace _fileOrganizer
         {
             try
             {
+                var xViewModel = (CreateWindowViewModel) DataContext;
+                string? xTrimmedName = xViewModel.Name?.Trim ();
+
+                if (string.IsNullOrWhiteSpace (xTrimmedName) == false)
+                {
+                    if (xViewModel.ExistingNames == null || xViewModel.ExistingNames.Contains (xTrimmedName, StringComparer.OrdinalIgnoreCase) == false)
+                    {
+                        xViewModel.ErrorMessage = null;
+                        xViewModel.CanCreate = true;
+                        return;
+                    }
+
+                    else xViewModel.ErrorMessage = "Name already exists.";
+                }
+
+                xViewModel.CanCreate = false;
             }
 
             catch (Exception xException)
@@ -28,6 +44,9 @@ namespace _fileOrganizer
         {
             try
             {
+                var xViewModel = (CreateWindowViewModel) DataContext;
+                xViewModel.IsCreated = true;
+                Close ();
             }
 
             catch (Exception xException)
@@ -40,6 +59,9 @@ namespace _fileOrganizer
         {
             try
             {
+                var xViewModel = (CreateWindowViewModel) DataContext;
+                xViewModel.IsCreated = false;
+                Close ();
             }
 
             catch (Exception xException)
