@@ -4,7 +4,7 @@ namespace _fileOrganizer
 {
     public class Destination
     {
-        public string? Name { get; set; }
+        public string? Path { get; set; }
 
         public ObservableCollection <Subdirectory>? Subdirectories { get; set; }
     }

@@ -75,6 +75,38 @@ namespace _fileOrganizer
             }
         }
 
+        private ObservableCollection <File>? _files;
+
+        public ObservableCollection <File>? Files
+        {
+            get => _files;
+
+            set
+            {
+                if (_files != value)
+                {
+                    _files = value;
+                    OnPropertyChanged (nameof (Files));
+                }
+            }
+        }
+
+        private File? _selectedFile;
+
+        public File? SelectedFile
+        {
+            get => _selectedFile;
+
+            set
+            {
+                if (_selectedFile != value)
+                {
+                    _selectedFile = value;
+                    OnPropertyChanged (nameof (SelectedFile));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged (string propertyName) => PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));

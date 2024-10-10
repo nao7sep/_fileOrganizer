@@ -67,7 +67,9 @@
         <!-- Files Column -->
 
         <Label Content="Files:" Grid.Column="3" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
-        <ListBox x:Name="FilesListBox" Grid.Column="3" Grid.Row="1" />
+
+        <ListBox x:Name="FilesListBox" ItemsSource="{Binding Files}" SelectedItem="{Binding SelectedFile, Mode=TwoWay}"
+                 Grid.Column="3" Grid.Row="1" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="AddFilesButton" Content="Add" />
