@@ -24,5 +24,17 @@ namespace _fileOrganizer
                 return false;
             }
         }
+
+        public static ViewModelType InitializeWindow <ViewModelType> (dynamic window, Window owner, string title, string message)
+        {
+            window.Owner = owner;
+            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+            dynamic xViewModel = (ViewModelType) window.DataContext;
+            xViewModel.Title = title;
+            xViewModel.Message = message;
+
+            return xViewModel;
+        }
     }
 }
