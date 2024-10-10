@@ -11,5 +11,41 @@ namespace _fileOrganizer
         {
             InitializeComponent ();
         }
+
+        private void NameTextBoxTextChanged (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void CreateButtonClicked (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void CancelButtonClicked (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
     }
 }
