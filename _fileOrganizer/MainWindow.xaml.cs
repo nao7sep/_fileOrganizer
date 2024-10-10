@@ -24,30 +24,13 @@ namespace _fileOrganizer
 
                 if (xCreateWindowViewModel.IsCreated == true)
                 {
-                    xViewModel.Groups ??= [];
-
-                    // There seems to be no XAML-only way to sort ListBox items case-insensitively.
-                    // Also considering serializing the entire view model to JSON,
-                    // I've chosen to keep the ObservableCollection sorted.
-
-                    int xCount = xViewModel.Groups.Count,
-                        xIndex = -1;
-
-                    for (int temp = 0; temp < xCount; temp ++)
-                    {
-                        if (xCreateWindowViewModel.Name!.CompareTo (xViewModel.Groups [temp].Name) < 0)
-                        {
-                            xIndex = temp;
-                            break;
-                        }
-                    }
-
                     var xGroup = new Group { Name = xCreateWindowViewModel.Name };
 
-                    if (xIndex >= 0)
-                        xViewModel.Groups.Insert (xIndex, xGroup);
+                    xViewModel.Groups ??= [];
+                    Utility.InsertItemInOrder (xViewModel.Groups, xGroup, x => x.Name);
 
-                    else xViewModel.Groups.Add (xGroup);
+                    GroupsListBox.SelectedItem = xGroup;
+                    GroupsListBox.ScrollIntoView (xGroup);
                 }
             }
 
