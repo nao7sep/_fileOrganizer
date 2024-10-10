@@ -37,6 +37,9 @@ namespace _fileOrganizer
                     if (xViewModel.CanCreate)
                         CreateButtonClick (sender, e);
                 }
+
+                else if (e.Key == Key.Escape)
+                    CancelButtonClick (sender, e);
             }
 
             catch (Exception xException)
