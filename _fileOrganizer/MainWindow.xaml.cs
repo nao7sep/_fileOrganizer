@@ -78,7 +78,7 @@ namespace _fileOrganizer
                 var xViewModel = (MainWindowViewModel) DataContext;
                 string xMessage = $"Are you sure you want to delete the group '{xViewModel.SelectedGroup!.Name}'?";
 
-                if (MessageBox.Show (this, xMessage, "Delete Group", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show (this, xMessage, "Delete Group", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
                     var xGroup = xViewModel.SelectedGroup;
                     var xAdjacentGroup = Utility.GetAdjacentItem (xViewModel.Groups!, xGroup);
