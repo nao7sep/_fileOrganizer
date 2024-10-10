@@ -31,7 +31,7 @@
         <Label Content="Groups:" Grid.Column="0" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
 
         <ListBox x:Name="GroupsListBox" ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}"
-                 Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" />
+                 Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" ItemTemplate="{StaticResource ListBoxItemDataTemplate}" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="CreateGroupButton" Content="Create" />
@@ -44,7 +44,7 @@
         <Label Content="Destinations:" Grid.Column="1" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
 
         <ListBox x:Name="DestinationsListBox" ItemsSource="{Binding SelectedGroupDestinations}" SelectedItem="{Binding SelectedDestination, Mode=TwoWay}"
-                 Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" />
+                 Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemTemplate="{StaticResource ListBoxItemDataTemplate}" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="AddDestinationButton" Content="Add" />
@@ -56,7 +56,7 @@
         <Label Content="Subdirectories:" Grid.Column="2" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
 
         <ListBox x:Name="SubdirectoriesListBox" ItemsSource="{Binding SelectedDestinationSubdirectories}" SelectedItem="{Binding SelectedSubdirectory, Mode=TwoWay}"
-                 Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" />
+                 Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" ItemTemplate="{StaticResource ListBoxItemDataTemplate}" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="CreateSubdirectoryButton" Content="Create" />
@@ -69,7 +69,7 @@
         <Label Content="Files:" Grid.Column="3" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
 
         <ListBox x:Name="FilesListBox" ItemsSource="{Binding Files}" SelectedItem="{Binding SelectedFile, Mode=TwoWay}"
-                 Grid.Column="3" Grid.Row="1" />
+                 Grid.Column="3" Grid.Row="1" ItemTemplate="{StaticResource ListBoxItemDataTemplate}" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="AddFilesButton" Content="Add" />

@@ -7,5 +7,7 @@ namespace _fileOrganizer
         public string? Path { get; set; }
 
         public ObservableCollection <Subdirectory>? Subdirectories { get; set; }
+
+        public override string? ToString () => Path;
     }
 }

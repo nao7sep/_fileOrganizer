@@ -17,7 +17,18 @@
 
         <Style TargetType="ListBox">
             <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+
+        <DataTemplate x:Key="ListBoxItemDataTemplate">
+            <TextBlock Text="{Binding}" Margin="5" Padding="0" TextWrapping="Wrap" />
+        </DataTemplate>
 
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5" />
