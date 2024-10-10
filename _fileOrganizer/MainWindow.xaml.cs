@@ -70,5 +70,32 @@ namespace _fileOrganizer
                 Utility.TryHandleException (this, xException);
             }
         }
+
+        private void DeleteGroupButtonClick (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var xViewModel = (MainWindowViewModel) DataContext;
+                string xMessage = $"Are you sure you want to delete the group '{xViewModel.SelectedGroup!.Name}'?";
+
+                if (MessageBox.Show (this, xMessage, "Delete Group", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    var xGroup = xViewModel.SelectedGroup;
+                    var xAdjacentGroup = Utility.GetAdjacentItem (xViewModel.Groups!, xGroup);
+                    xViewModel.Groups!.Remove (xGroup);
+
+                    if (xAdjacentGroup != null)
+                    {
+                        GroupsListBox.SelectedItem = xAdjacentGroup;
+                        GroupsListBox.ScrollIntoView (xAdjacentGroup);
+                    }
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
     }
 }

@@ -60,5 +60,23 @@ namespace _fileOrganizer
 
             else collection.Add (item);
         }
+
+        public static ItemType? GetAdjacentItem <ItemType> (ObservableCollection <ItemType> collection, ItemType item) where ItemType: class
+        {
+            int xIndex = collection.IndexOf (item);
+
+            if (xIndex < 0)
+                throw new yyArgumentException ("The current item is not in the collection."); // Should never happen.
+
+            // At least one item is after the current one.
+            if (xIndex + 1 < collection.Count)
+                return collection [xIndex + 1];
+
+            // The current item is the last one and there are at least two items.
+            if (xIndex == collection.Count - 1 && collection.Count >= 2)
+                return collection [xIndex - 1];
+
+            return null;
+        }
     }
 }
