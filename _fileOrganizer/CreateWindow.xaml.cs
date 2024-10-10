@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace _fileOrganizer
 {
@@ -17,6 +18,25 @@ namespace _fileOrganizer
             try
             {
                 NameTextBox.Focus ();
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void NameTextBoxKeyDown (object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+                    var xViewModel = (CreateWindowViewModel) DataContext;
+
+                    if (xViewModel.CanCreate)
+                        CreateButtonClick (sender, e);
+                }
             }
 
             catch (Exception xException)
@@ -55,7 +75,7 @@ namespace _fileOrganizer
             }
         }
 
-        private void CreateButtonClicked (object sender, RoutedEventArgs e)
+        private void CreateButtonClick (object sender, RoutedEventArgs e)
         {
             try
             {
@@ -70,7 +90,7 @@ namespace _fileOrganizer
             }
         }
 
-        private void CancelButtonClicked (object sender, RoutedEventArgs e)
+        private void CancelButtonClick (object sender, RoutedEventArgs e)
         {
             try
             {

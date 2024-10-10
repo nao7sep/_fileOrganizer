@@ -12,7 +12,7 @@ namespace _fileOrganizer
             InitializeComponent ();
         }
 
-        private void CreateGroupButtonClicked (object sender, RoutedEventArgs e)
+        private void CreateGroupButtonClick (object sender, RoutedEventArgs e)
         {
             try
             {
