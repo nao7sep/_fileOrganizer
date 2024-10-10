@@ -26,7 +26,7 @@ namespace _fileOrganizer
             }
         }
 
-        private void NewNameTextBoxKeyDown (object sender, KeyEventArgs e)
+        private void NewNameTextBoxKeyDown (object sender, System.Windows.Input.KeyEventArgs e)
         {
             try
             {

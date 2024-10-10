@@ -13,9 +13,9 @@ namespace _fileOrganizer
                 yyLogger.Default.WriteException (exception);
 
                 if (owner != null)
-                    MessageBox.Show (owner, exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show (owner, exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                else MessageBox.Show (exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else System.Windows.MessageBox.Show (exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return true;
             }

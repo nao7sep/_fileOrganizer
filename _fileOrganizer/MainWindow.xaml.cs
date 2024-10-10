@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 
 namespace _fileOrganizer
 {
@@ -78,7 +79,7 @@ namespace _fileOrganizer
                 var xViewModel = (MainWindowViewModel) DataContext;
                 string xMessage = $"Are you sure you want to delete the group '{xViewModel.SelectedGroup!.Name}'?";
 
-                if (MessageBox.Show (this, xMessage, "Delete Group", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+                if (System.Windows.MessageBox.Show (this, xMessage, "Delete Group", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
                     var xGroup = xViewModel.SelectedGroup;
                     var xAdjacentGroup = Utility.GetAdjacentItem (xViewModel.Groups!, xGroup);
@@ -89,6 +90,35 @@ namespace _fileOrganizer
                         GroupsListBox.SelectedItem = xAdjacentGroup;
                         GroupsListBox.ScrollIntoView (xAdjacentGroup);
                     }
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void AddDestinationButtonClick (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var xViewModel = (MainWindowViewModel) DataContext;
+
+                using FolderBrowserDialog xDialog = new ();
+                // xDialog.Description = "Select the destination folder."; // Doesnt look good.
+                xDialog.ShowNewFolderButton = true;
+                var xResult = xDialog.ShowDialog ();
+
+                if (xResult == System.Windows.Forms.DialogResult.OK && Directory.Exists (xDialog.SelectedPath))
+                {
+                    var xDestination = new Destination { Path = xDialog.SelectedPath };
+
+                    xViewModel.SelectedGroup!.Destinations ??= [];
+                    Utility.InsertItemInOrder (xViewModel.SelectedGroup.Destinations, xDestination, x => x.Path);
+
+                    DestinationsListBox.SelectedItem = xDestination;
+                    DestinationsListBox.ScrollIntoView (xDestination);
                 }
             }
 

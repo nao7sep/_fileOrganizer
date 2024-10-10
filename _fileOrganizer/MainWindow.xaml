@@ -35,8 +35,12 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="CreateGroupButton" Content="Create" Click="CreateGroupButtonClick" />
-            <Button x:Name="RenameGroupButton" Content="Rename" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}" Click="RenameGroupButtonClick" />
-            <Button x:Name="DeleteGroupButton" Content="Delete" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}" Click="DeleteGroupButtonClick" />
+
+            <Button x:Name="RenameGroupButton" Content="Rename" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}"
+                    Click="RenameGroupButtonClick" />
+
+            <Button x:Name="DeleteGroupButton" Content="Delete" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}"
+                    Click="DeleteGroupButtonClick" />
         </StackPanel>
 
         <!-- Destinations Column -->
@@ -47,7 +51,9 @@
                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemTemplate="{StaticResource ListBoxItemDataTemplate}" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
-            <Button x:Name="AddDestinationButton" Content="Add" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
+            <Button x:Name="AddDestinationButton" Content="Add" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}"
+                    Click="AddDestinationButtonClick" />
+
             <Button x:Name="RemoveDestinationButton" Content="Remove" IsEnabled="{Binding SelectedDestination, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
         </StackPanel>
 
