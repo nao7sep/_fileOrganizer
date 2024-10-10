@@ -20,8 +20,6 @@ namespace _fileOrganizer
             }
         }
 
-        public IEnumerable <string>? ExistingNames { get; set; }
-
         private string? _message;
 
         public string? Message

@@ -77,5 +77,6 @@
         <!-- Converters -->
 
         <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+        <local:SelectedItemToIsEnabledConverter x:Key="SelectedItemToIsEnabledConverter" />
     </Application.Resources>
 </Application>

@@ -12,6 +12,19 @@ namespace _fileOrganizer
             InitializeComponent ();
         }
 
+        private void WindowLoaded (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NameTextBox.Focus ();
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
         private void NameTextBoxTextChanged (object sender, RoutedEventArgs e)
         {
             try
@@ -21,7 +34,9 @@ namespace _fileOrganizer
 
                 if (string.IsNullOrWhiteSpace (xTrimmedName) == false)
                 {
-                    if (xViewModel.ExistingNames == null || xViewModel.ExistingNames.Contains (xTrimmedName, StringComparer.OrdinalIgnoreCase) == false)
+                    var xExistingNames = ((MainWindowViewModel) Owner.DataContext).Groups?.Select (x => x.Name);
+
+                    if (xExistingNames == null || xExistingNames.Contains (xTrimmedName, StringComparer.OrdinalIgnoreCase) == false)
                     {
                         xViewModel.ErrorMessage = null;
                         xViewModel.CanCreate = true;
