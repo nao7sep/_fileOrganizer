@@ -86,23 +86,23 @@ namespace _fileOrganizer
             }
         }
 
-        private bool _canCreate;
+        private bool _canRename;
 
-        public bool CanCreate
+        public bool CanRename
         {
-            get => _canCreate;
+            get => _canRename;
 
             set
             {
-                if (_canCreate != value)
+                if (_canRename != value)
                 {
-                    _canCreate = value;
-                    OnPropertyChanged (nameof (CanCreate));
+                    _canRename = value;
+                    OnPropertyChanged (nameof (CanRename));
                 }
             }
         }
 
-        public bool? IsCreated { get; set; }
+        public bool? IsRenamed { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

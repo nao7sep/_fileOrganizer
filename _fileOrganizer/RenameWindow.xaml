@@ -41,7 +41,7 @@
                    Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource ErrorMessageTextBlockStyle}" />
 
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
-            <Button x:Name="CreateButton" Content="Create" IsEnabled="{Binding CanCreate}" Click="CreateButtonClick" />
+            <Button x:Name="RenameButton" Content="Rename" IsEnabled="{Binding CanRename}" Click="RenameButtonClick" />
             <Button x:Name="CancelButton" Content="Cancel" Click="CancelButtonClick" />
         </StackPanel>
     </Grid>

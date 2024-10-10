@@ -40,5 +40,35 @@ namespace _fileOrganizer
                 Utility.TryHandleException (this, xException);
             }
         }
+
+        private void RenameGroupButtonClick (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var xViewModel = (MainWindowViewModel) DataContext;
+
+                RenameWindow xRenameWindow = new ();
+                var xRenameWindowViewModel = Utility.InitializeWindow <RenameWindowViewModel> (xRenameWindow, this, "Rename Group", "Enter the new name of the group.");
+                xRenameWindowViewModel.ExistingNames = xViewModel.Groups?.Select (x => x.Name);
+                xRenameWindowViewModel.CurrentName = xViewModel.SelectedGroup?.Name;
+                xRenameWindow.ShowDialog ();
+
+                if (xRenameWindowViewModel.IsRenamed == true)
+                {
+                    var xGroup = xViewModel.SelectedGroup;
+                    xGroup!.Name = xRenameWindowViewModel.NewName;
+                    xViewModel.Groups!.Remove (xGroup);
+                    Utility.InsertItemInOrder (xViewModel.Groups, xGroup, x => x.Name);
+
+                    GroupsListBox.SelectedItem = xGroup;
+                    GroupsListBox.ScrollIntoView (xGroup);
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
     }
 }

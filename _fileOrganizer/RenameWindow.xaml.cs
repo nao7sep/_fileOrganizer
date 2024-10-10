@@ -34,8 +34,8 @@ namespace _fileOrganizer
                 {
                     var xViewModel = (RenameWindowViewModel) DataContext;
 
-                    if (xViewModel.CanCreate)
-                        CreateButtonClick (sender, e);
+                    if (xViewModel.CanRename)
+                        RenameButtonClick (sender, e);
                 }
 
                 else if (e.Key == Key.Escape)
@@ -57,17 +57,26 @@ namespace _fileOrganizer
 
                 if (string.IsNullOrWhiteSpace (xTrimmedName) == false)
                 {
-                    if (xViewModel.ExistingNames == null || xViewModel.ExistingNames.Contains (xTrimmedName, StringComparer.OrdinalIgnoreCase) == false)
+                    if (xViewModel.ExistingNames == null || xViewModel.ExistingNames.Contains (xTrimmedName, StringComparer.OrdinalIgnoreCase) == false ||
+                        string.Equals (xViewModel.CurrentName, xTrimmedName, StringComparison.OrdinalIgnoreCase))
                     {
                         xViewModel.ErrorMessage = null;
-                        xViewModel.CanCreate = true;
+                        xViewModel.CanRename = true;
                         return;
                     }
 
-                    else xViewModel.ErrorMessage = "Name already exists.";
+                    else
+                    {
+                        xViewModel.ErrorMessage = "Name already exists.";
+                        xViewModel.CanRename = false;
+                    }
                 }
 
-                xViewModel.CanCreate = false;
+                else
+                {
+                    xViewModel.ErrorMessage = null;
+                    xViewModel.CanRename = false;
+                }
             }
 
             catch (Exception xException)
@@ -76,12 +85,12 @@ namespace _fileOrganizer
             }
         }
 
-        private void CreateButtonClick (object sender, RoutedEventArgs e)
+        private void RenameButtonClick (object sender, RoutedEventArgs e)
         {
             try
             {
                 var xViewModel = (RenameWindowViewModel) DataContext;
-                xViewModel.IsCreated = true;
+                xViewModel.IsRenamed = true;
                 Close ();
             }
 
@@ -96,7 +105,7 @@ namespace _fileOrganizer
             try
             {
                 var xViewModel = (RenameWindowViewModel) DataContext;
-                xViewModel.IsCreated = false;
+                xViewModel.IsRenamed = false;
                 Close ();
             }
 

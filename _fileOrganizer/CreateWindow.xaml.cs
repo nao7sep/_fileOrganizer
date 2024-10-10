@@ -64,10 +64,18 @@ namespace _fileOrganizer
                         return;
                     }
 
-                    else xViewModel.ErrorMessage = "Name already exists.";
+                    else
+                    {
+                        xViewModel.ErrorMessage = "Name already exists.";
+                        xViewModel.CanCreate = false;
+                    }
                 }
 
-                xViewModel.CanCreate = false;
+                else
+                {
+                    xViewModel.ErrorMessage = null;
+                    xViewModel.CanCreate = false;
+                }
             }
 
             catch (Exception xException)
