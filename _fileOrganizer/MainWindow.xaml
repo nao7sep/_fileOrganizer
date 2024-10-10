@@ -47,7 +47,7 @@
                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemTemplate="{StaticResource ListBoxItemDataTemplate}" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
-            <Button x:Name="AddDestinationButton" Content="Add" />
+            <Button x:Name="AddDestinationButton" Content="Add" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
             <Button x:Name="RemoveDestinationButton" Content="Remove" IsEnabled="{Binding SelectedDestination, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
         </StackPanel>
 
@@ -59,7 +59,7 @@
                  Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" ItemTemplate="{StaticResource ListBoxItemDataTemplate}" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
-            <Button x:Name="CreateSubdirectoryButton" Content="Create" />
+            <Button x:Name="CreateSubdirectoryButton" Content="Create" IsEnabled="{Binding SelectedDestination, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
             <Button x:Name="RenameSubdirectoryButton" Content="Rename" IsEnabled="{Binding SelectedSubdirectory, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
             <Button x:Name="DeleteSubdirectoryButton" Content="Delete" IsEnabled="{Binding SelectedSubdirectory, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
         </StackPanel>
