@@ -20,6 +20,7 @@ namespace _fileOrganizer
 
                 CreateWindow xCreateWindow = new ();
                 var xCreateWindowViewModel = Utility.InitializeWindow <CreateWindowViewModel> (xCreateWindow, this, "Create Group", "Enter the name of the group.");
+                xCreateWindowViewModel.ExistingNames = xViewModel.Groups?.Select (x => x.Name);
                 xCreateWindow.ShowDialog ();
 
                 if (xCreateWindowViewModel.IsCreated == true)

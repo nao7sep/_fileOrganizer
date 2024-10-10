@@ -57,9 +57,7 @@ namespace _fileOrganizer
 
                 if (string.IsNullOrWhiteSpace (xTrimmedName) == false)
                 {
-                    var xExistingNames = ((MainWindowViewModel) Owner.DataContext).Groups?.Select (x => x.Name);
-
-                    if (xExistingNames == null || xExistingNames.Contains (xTrimmedName, StringComparer.OrdinalIgnoreCase) == false)
+                    if (xViewModel.ExistingNames == null || xViewModel.ExistingNames.Contains (xTrimmedName, StringComparer.OrdinalIgnoreCase) == false)
                     {
                         xViewModel.ErrorMessage = null;
                         xViewModel.CanCreate = true;

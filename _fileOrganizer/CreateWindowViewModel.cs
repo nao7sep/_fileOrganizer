@@ -36,6 +36,8 @@ namespace _fileOrganizer
             }
         }
 
+        public IEnumerable <string?>? ExistingNames { get; set; }
+
         private string? _name;
 
         public string? Name
