@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:_fileOrganizer"
         mc:Ignorable="d"
         Title="_fileOrganizer" Width="1024" Height="512">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -25,7 +29,9 @@
         <!-- Groups Column -->
 
         <Label Content="Groups:" Grid.Column="0" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
-        <ListBox x:Name="GroupsListBox" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" />
+
+        <ListBox x:Name="GroupsListBox" ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}"
+                 Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="CreateGroupButton" Content="Create" />
@@ -36,7 +42,9 @@
         <!-- Destinations Column -->
 
         <Label Content="Destinations:" Grid.Column="1" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
-        <ListBox x:Name="DestinationsListBox" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" />
+
+        <ListBox x:Name="DestinationsListBox" ItemsSource="{Binding SelectedGroupDestinations}" SelectedItem="{Binding SelectedDestination, Mode=TwoWay}"
+                 Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="AddDestinationButton" Content="Add" />
@@ -46,7 +54,9 @@
         <!-- Subdirectories Column -->
 
         <Label Content="Subdirectories:" Grid.Column="2" Grid.Row="0" Style="{StaticResource VerticalLabelStyle}" />
-        <ListBox x:Name="SubdirectoriesListBox" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" />
+
+        <ListBox x:Name="SubdirectoriesListBox" ItemsSource="{Binding SelectedDestinationSubdirectories}" SelectedItem="{Binding SelectedSubdirectory, Mode=TwoWay}"
+                 Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="CreateSubdirectoryButton" Content="Create" />
