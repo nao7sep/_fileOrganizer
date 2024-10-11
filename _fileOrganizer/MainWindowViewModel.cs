@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using yyLib;
 
 namespace _fileOrganizer
 {
@@ -33,12 +34,26 @@ namespace _fileOrganizer
                 {
                     _selectedGroup = value;
                     OnPropertyChanged (nameof (SelectedGroup));
-                    OnPropertyChanged (nameof (SelectedGroupDestinations));
                 }
             }
         }
 
-        public ObservableCollection <Destination>? SelectedGroupDestinations => SelectedGroup?.Destinations;
+        public ObservableCollection <Destination>? SelectedGroupDestinations
+        {
+            get => SelectedGroup?.Destinations;
+
+            set
+            {
+                if (SelectedGroup == null)
+                    throw new yyInvalidOperationException ("SelectedGroup is null.");
+
+                if (SelectedGroup.Destinations != value)
+                {
+                    SelectedGroup.Destinations = value;
+                    OnPropertyChanged (nameof (SelectedGroupDestinations));
+                }
+            }
+        }
 
         private Destination? _selectedDestination;
 
@@ -52,12 +67,26 @@ namespace _fileOrganizer
                 {
                     _selectedDestination = value;
                     OnPropertyChanged (nameof (SelectedDestination));
-                    OnPropertyChanged (nameof (SelectedDestinationSubdirectories));
                 }
             }
         }
 
-        public ObservableCollection <Subdirectory>? SelectedDestinationSubdirectories => SelectedDestination?.Subdirectories;
+        public ObservableCollection <Subdirectory>? SelectedDestinationSubdirectories
+        {
+            get => SelectedDestination?.Subdirectories;
+
+            set
+            {
+                if (SelectedDestination == null)
+                    throw new yyInvalidOperationException ("SelectedDestination is null.");
+
+                if (SelectedDestination.Subdirectories != value)
+                {
+                    SelectedDestination.Subdirectories = value;
+                    OnPropertyChanged (nameof (SelectedDestinationSubdirectories));
+                }
+            }
+        }
 
         private Subdirectory? _selectedSubdirectory;
 

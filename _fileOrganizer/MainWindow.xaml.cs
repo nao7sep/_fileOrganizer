@@ -114,8 +114,8 @@ namespace _fileOrganizer
                 {
                     var xDestination = new Destination { Path = xDialog.SelectedPath };
 
-                    xViewModel.SelectedGroup!.Destinations ??= [];
-                    Utility.InsertItemInOrder (xViewModel.SelectedGroup.Destinations, xDestination, x => x.Path);
+                    xViewModel.SelectedGroupDestinations ??= [];
+                    Utility.InsertItemInOrder (xViewModel.SelectedGroupDestinations, xDestination, x => x.Path);
 
                     DestinationsListBox.SelectedItem = xDestination;
                     DestinationsListBox.ScrollIntoView (xDestination);
