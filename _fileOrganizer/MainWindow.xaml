@@ -84,7 +84,9 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" Style="{StaticResource ButtonsStackPanelStyle}">
             <Button x:Name="AddFilesButton" Content="Add" />
+            <!-- Rename -->
             <Button x:Name="RemoveFilesButton" Content="Remove" IsEnabled="{Binding SelectedFile, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
+            <!-- Clear -->
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="3" Style="{StaticResource ButtonsStackPanelStyle}">

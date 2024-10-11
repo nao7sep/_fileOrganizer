@@ -1,3 +1,4 @@
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -179,6 +180,15 @@ namespace _fileOrganizer
                 {
                     if (Directory.Exists (xViewModel.SelectedDestination.Path) == false)
                         System.Windows.MessageBox.Show (this, "Destination does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    else
+                    {
+                        xViewModel.SelectedDestinationSubdirectories = new (
+                            Directory.GetDirectories (xViewModel.SelectedDestination.Path, "*", SearchOption.TopDirectoryOnly).
+                                Where (x => (System.IO.File.GetAttributes (x) & (FileAttributes.Hidden | FileAttributes.System)) == 0).
+                                Order (StringComparer.OrdinalIgnoreCase).
+                                Select (y => new Subdirectory { Path = y }));
+                    }
                 }
             }
 
@@ -245,6 +255,30 @@ namespace _fileOrganizer
                         DestinationsListBox.ScrollIntoView (xAdjacentDestination);
                     }
                 }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void SubdirectoriesListBoxKeyDown (object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            try
+            {
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void FilesListBoxKeyDown (object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            try
+            {
             }
 
             catch (Exception xException)
