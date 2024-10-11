@@ -205,7 +205,7 @@ namespace _fileOrganizer
                 var xViewModel = (MainWindowViewModel) DataContext;
 
                 using FolderBrowserDialog xDialog = new ();
-                // xDialog.Description = "Select the destination folder."; // Doesnt look good.
+                // xDialog.Description = "Select the destination directory."; // Doesnt look good.
                 xDialog.ShowNewFolderButton = true;
                 var xResult = xDialog.ShowDialog ();
 
@@ -254,6 +254,37 @@ namespace _fileOrganizer
                         DestinationsListBox.SelectedItem = xAdjacentDestination;
                         DestinationsListBox.ScrollIntoView (xAdjacentDestination);
                     }
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void CreateSubdirectoryButtonClick (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var xViewModel = (MainWindowViewModel) DataContext;
+
+                CreateWindow xCreateWindow = new ();
+                var xCreateWindowViewModel = Utility.InitializeWindow <CreateWindowViewModel> (xCreateWindow, this, "Create Subdirectory", "Enter the name of the subdirectory.");
+                xCreateWindowViewModel.ExistingNames = xViewModel.SelectedDestinationSubdirectories?.Select (x => Path.GetFileName (x.Path));
+                xCreateWindow.ShowDialog ();
+
+                if (xCreateWindowViewModel.IsCreated == true)
+                {
+                    var xSubdirectory = new Subdirectory { Path = Path.Join (xViewModel.SelectedDestination!.Path, xCreateWindowViewModel.Name) };
+
+                    xViewModel.SelectedDestinationSubdirectories ??= []; // Just in case.
+                    Utility.InsertItemInOrder (xViewModel.SelectedDestinationSubdirectories, xSubdirectory, x => x.Path);
+                    Directory.CreateDirectory (xSubdirectory.Path);
+                    _Save ();
+
+                    SubdirectoriesListBox.SelectedItem = xSubdirectory;
+                    SubdirectoriesListBox.ScrollIntoView (xSubdirectory);
                 }
             }
 

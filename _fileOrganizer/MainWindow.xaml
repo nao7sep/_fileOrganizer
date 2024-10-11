@@ -69,7 +69,9 @@
                  KeyDown="SubdirectoriesListBoxKeyDown" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonsStackPanelStyle}">
-            <Button x:Name="CreateSubdirectoryButton" Content="Create" IsEnabled="{Binding SelectedDestination, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
+            <Button x:Name="CreateSubdirectoryButton" Content="Create" IsEnabled="{Binding SelectedDestination, Converter={StaticResource SelectedItemToIsEnabledConverter}}"
+                    Click="CreateSubdirectoryButtonClick" />
+
             <Button x:Name="RenameSubdirectoryButton" Content="Rename" IsEnabled="{Binding SelectedSubdirectory, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
             <Button x:Name="DeleteSubdirectoryButton" Content="Delete" IsEnabled="{Binding SelectedSubdirectory, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
         </StackPanel>
