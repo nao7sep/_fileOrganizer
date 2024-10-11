@@ -54,7 +54,8 @@
             <Button x:Name="AddDestinationButton" Content="Add" IsEnabled="{Binding SelectedGroup, Converter={StaticResource SelectedItemToIsEnabledConverter}}"
                     Click="AddDestinationButtonClick" />
 
-            <Button x:Name="RemoveDestinationButton" Content="Remove" IsEnabled="{Binding SelectedDestination, Converter={StaticResource SelectedItemToIsEnabledConverter}}" />
+            <Button x:Name="RemoveDestinationButton" Content="Remove" IsEnabled="{Binding SelectedDestination, Converter={StaticResource SelectedItemToIsEnabledConverter}}"
+                    Click="RemoveDestinationButtonClick" />
         </StackPanel>
 
         <!-- Subdirectories Column -->

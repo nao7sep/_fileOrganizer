@@ -18,6 +18,11 @@ namespace _fileOrganizer
                 {
                     _groups = value;
                     OnPropertyChanged (nameof (Groups));
+                    OnPropertyChanged (nameof (SelectedGroup));
+                    OnPropertyChanged (nameof (SelectedGroupDestinations));
+                    OnPropertyChanged (nameof (SelectedDestination));
+                    OnPropertyChanged (nameof (SelectedDestinationSubdirectories));
+                    OnPropertyChanged (nameof (SelectedSubdirectory));
                 }
             }
         }
@@ -34,6 +39,10 @@ namespace _fileOrganizer
                 {
                     _selectedGroup = value;
                     OnPropertyChanged (nameof (SelectedGroup));
+                    OnPropertyChanged (nameof (SelectedGroupDestinations));
+                    OnPropertyChanged (nameof (SelectedDestination));
+                    OnPropertyChanged (nameof (SelectedDestinationSubdirectories));
+                    OnPropertyChanged (nameof (SelectedSubdirectory));
                 }
             }
         }
@@ -51,6 +60,9 @@ namespace _fileOrganizer
                 {
                     SelectedGroup.Destinations = value;
                     OnPropertyChanged (nameof (SelectedGroupDestinations));
+                    OnPropertyChanged (nameof (SelectedDestination));
+                    OnPropertyChanged (nameof (SelectedDestinationSubdirectories));
+                    OnPropertyChanged (nameof (SelectedSubdirectory));
                 }
             }
         }
@@ -67,6 +79,8 @@ namespace _fileOrganizer
                 {
                     _selectedDestination = value;
                     OnPropertyChanged (nameof (SelectedDestination));
+                    OnPropertyChanged (nameof (SelectedDestinationSubdirectories));
+                    OnPropertyChanged (nameof (SelectedSubdirectory));
                 }
             }
         }
@@ -84,6 +98,7 @@ namespace _fileOrganizer
                 {
                     SelectedDestination.Subdirectories = value;
                     OnPropertyChanged (nameof (SelectedDestinationSubdirectories));
+                    OnPropertyChanged (nameof (SelectedSubdirectory));
                 }
             }
         }
@@ -116,6 +131,7 @@ namespace _fileOrganizer
                 {
                     _files = value;
                     OnPropertyChanged (nameof (Files));
+                    OnPropertyChanged (nameof (SelectedFile));
                 }
             }
         }

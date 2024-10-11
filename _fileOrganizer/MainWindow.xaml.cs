@@ -112,6 +112,13 @@ namespace _fileOrganizer
 
                 if (xResult == System.Windows.Forms.DialogResult.OK && Directory.Exists (xDialog.SelectedPath))
                 {
+                    if (xViewModel.SelectedGroupDestinations != null &&
+                        xViewModel.SelectedGroupDestinations.Any (x => string.Equals (x.Path, xDialog.SelectedPath, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        System.Windows.MessageBox.Show (this, "Destination already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
                     var xDestination = new Destination { Path = xDialog.SelectedPath };
 
                     xViewModel.SelectedGroupDestinations ??= [];
@@ -119,6 +126,33 @@ namespace _fileOrganizer
 
                     DestinationsListBox.SelectedItem = xDestination;
                     DestinationsListBox.ScrollIntoView (xDestination);
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void RemoveDestinationButtonClick (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var xViewModel = (MainWindowViewModel) DataContext;
+                string xMessage = $"Are you sure you want to delete the destination '{xViewModel.SelectedDestination!.Path}'?";
+
+                if (System.Windows.MessageBox.Show (this, xMessage, "Delete Destination", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+                {
+                    var xDestination = xViewModel.SelectedDestination;
+                    var xAdjacentDestination = Utility.GetAdjacentItem (xViewModel.SelectedGroupDestinations!, xDestination);
+                    xViewModel.SelectedGroupDestinations!.Remove (xDestination);
+
+                    if (xAdjacentDestination != null)
+                    {
+                        DestinationsListBox.SelectedItem = xAdjacentDestination;
+                        DestinationsListBox.ScrollIntoView (xAdjacentDestination);
+                    }
                 }
             }
 
