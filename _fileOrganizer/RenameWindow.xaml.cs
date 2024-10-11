@@ -10,7 +10,15 @@ namespace _fileOrganizer
     {
         public RenameWindow ()
         {
-            InitializeComponent ();
+            try
+            {
+                InitializeComponent ();
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
         }
 
         private void WindowLoaded (object sender, RoutedEventArgs e)

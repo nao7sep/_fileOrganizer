@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using yyLib;
 
@@ -6,25 +7,9 @@ namespace _fileOrganizer
 {
     public static class Utility
     {
-        public static bool TryHandleException (Window? owner, Exception exception)
-        {
-            try
-            {
-                yyLogger.Default.WriteException (exception);
+        public static string DestinationsFilePath { get; } = yyAppDirectory.MapPath ("Destinations.json");
 
-                if (owner != null)
-                    System.Windows.MessageBox.Show (owner, exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                else System.Windows.MessageBox.Show (exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                return true;
-            }
-
-            catch
-            {
-                return false;
-            }
-        }
+        public static string BackupsDirectoryPath { get; } = Path.Join (yySpecialDirectories.LocalAppData, "Temp", "_fileOrganizer", "Backups");
 
         public static ViewModelType InitializeWindow <ViewModelType> (dynamic window, Window owner, string title, string message)
         {
@@ -77,6 +62,26 @@ namespace _fileOrganizer
                 return collection [xIndex - 1];
 
             return null;
+        }
+
+        public static bool TryHandleException (Window? owner, Exception exception)
+        {
+            try
+            {
+                yyLogger.Default.WriteException (exception);
+
+                if (owner != null)
+                    System.Windows.MessageBox.Show (owner, exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                else System.Windows.MessageBox.Show (exception.ToString (), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
         }
     }
 }

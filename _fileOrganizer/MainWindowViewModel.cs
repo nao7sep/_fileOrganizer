@@ -1,5 +1,6 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 using yyLib;
 
 namespace _fileOrganizer
@@ -29,6 +30,7 @@ namespace _fileOrganizer
 
         private Group? _selectedGroup;
 
+        [JsonIgnore]
         public Group? SelectedGroup
         {
             get => _selectedGroup;
@@ -47,6 +49,7 @@ namespace _fileOrganizer
             }
         }
 
+        [JsonIgnore]
         public ObservableCollection <Destination>? SelectedGroupDestinations
         {
             get => SelectedGroup?.Destinations;
@@ -69,6 +72,7 @@ namespace _fileOrganizer
 
         private Destination? _selectedDestination;
 
+        [JsonIgnore]
         public Destination? SelectedDestination
         {
             get => _selectedDestination;
@@ -85,6 +89,7 @@ namespace _fileOrganizer
             }
         }
 
+        [JsonIgnore]
         public ObservableCollection <Subdirectory>? SelectedDestinationSubdirectories
         {
             get => SelectedDestination?.Subdirectories;
@@ -105,6 +110,7 @@ namespace _fileOrganizer
 
         private Subdirectory? _selectedSubdirectory;
 
+        [JsonIgnore]
         public Subdirectory? SelectedSubdirectory
         {
             get => _selectedSubdirectory;
@@ -121,6 +127,7 @@ namespace _fileOrganizer
 
         private ObservableCollection <File>? _files;
 
+        [JsonIgnore]
         public ObservableCollection <File>? Files
         {
             get => _files;
@@ -138,6 +145,7 @@ namespace _fileOrganizer
 
         private File? _selectedFile;
 
+        [JsonIgnore]
         public File? SelectedFile
         {
             get => _selectedFile;

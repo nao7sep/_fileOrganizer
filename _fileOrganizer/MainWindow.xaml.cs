@@ -1,5 +1,8 @@
 ﻿using System.IO;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
+using yyLib;
 
 namespace _fileOrganizer
 {
@@ -10,7 +13,32 @@ namespace _fileOrganizer
     {
         public MainWindow ()
         {
-            InitializeComponent ();
+            try
+            {
+                InitializeComponent ();
+
+                if (System.IO.File.Exists (Utility.DestinationsFilePath))
+                {
+                    string xJsonString = System.IO.File.ReadAllText (Utility.DestinationsFilePath, Encoding.UTF8);
+                    DataContext = JsonSerializer.Deserialize <MainWindowViewModel> (xJsonString, yyJson.DefaultDeserializationOptions);
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void _Save ()
+        {
+            var xViewModel = (MainWindowViewModel) DataContext;
+            string xJsonString = JsonSerializer.Serialize (xViewModel, yyJson.DefaultSerializationOptions);
+            System.IO.File.WriteAllText (Utility.DestinationsFilePath, xJsonString, Encoding.UTF8);
+
+            Directory.CreateDirectory (Utility.BackupsDirectoryPath);
+            string xBackupFilePath = Path.Join (Utility.BackupsDirectoryPath, $"Destinations-{DateTime.UtcNow:yyyyMMdd'T'HHmmss'Z'}.json");
+            System.IO.File.WriteAllText (xBackupFilePath, xJsonString, Encoding.UTF8);
         }
 
         private void CreateGroupButtonClick (object sender, RoutedEventArgs e)
@@ -30,6 +58,7 @@ namespace _fileOrganizer
 
                     xViewModel.Groups ??= [];
                     Utility.InsertItemInOrder (xViewModel.Groups, xGroup, x => x.Name);
+                    _Save ();
 
                     GroupsListBox.SelectedItem = xGroup;
                     GroupsListBox.ScrollIntoView (xGroup);
@@ -60,6 +89,7 @@ namespace _fileOrganizer
                     xGroup!.Name = xRenameWindowViewModel.NewName;
                     xViewModel.Groups!.Remove (xGroup);
                     Utility.InsertItemInOrder (xViewModel.Groups, xGroup, x => x.Name);
+                    _Save ();
 
                     GroupsListBox.SelectedItem = xGroup;
                     GroupsListBox.ScrollIntoView (xGroup);
@@ -84,6 +114,7 @@ namespace _fileOrganizer
                     var xGroup = xViewModel.SelectedGroup;
                     var xAdjacentGroup = Utility.GetAdjacentItem (xViewModel.Groups!, xGroup);
                     xViewModel.Groups!.Remove (xGroup);
+                    _Save ();
 
                     if (xAdjacentGroup != null)
                     {
@@ -123,6 +154,7 @@ namespace _fileOrganizer
 
                     xViewModel.SelectedGroupDestinations ??= [];
                     Utility.InsertItemInOrder (xViewModel.SelectedGroupDestinations, xDestination, x => x.Path);
+                    _Save ();
 
                     DestinationsListBox.SelectedItem = xDestination;
                     DestinationsListBox.ScrollIntoView (xDestination);
@@ -147,6 +179,7 @@ namespace _fileOrganizer
                     var xDestination = xViewModel.SelectedDestination;
                     var xAdjacentDestination = Utility.GetAdjacentItem (xViewModel.SelectedGroupDestinations!, xDestination);
                     xViewModel.SelectedGroupDestinations!.Remove (xDestination);
+                    _Save ();
 
                     if (xAdjacentDestination != null)
                     {
