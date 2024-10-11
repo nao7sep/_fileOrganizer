@@ -1,7 +1,8 @@
-﻿using System.IO;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
 using yyLib;
 
 namespace _fileOrganizer
@@ -39,6 +40,25 @@ namespace _fileOrganizer
             Directory.CreateDirectory (Utility.BackupsDirectoryPath);
             string xBackupFilePath = Path.Join (Utility.BackupsDirectoryPath, $"Destinations-{DateTime.UtcNow:yyyyMMdd'T'HHmmss'Z'}.json");
             System.IO.File.WriteAllText (xBackupFilePath, xJsonString, Encoding.UTF8);
+        }
+
+        private void GroupsListBoxKeyDown (object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == System.Windows.Input.Key.Delete)
+                {
+                    var xViewModel = (MainWindowViewModel) DataContext;
+
+                    if (xViewModel.SelectedGroup != null)
+                        DeleteGroupButtonClick (sender, e);
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
         }
 
         private void CreateGroupButtonClick (object sender, RoutedEventArgs e)
@@ -121,6 +141,44 @@ namespace _fileOrganizer
                         GroupsListBox.SelectedItem = xAdjacentGroup;
                         GroupsListBox.ScrollIntoView (xAdjacentGroup);
                     }
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void DestinationsListBoxKeyDown (object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == System.Windows.Input.Key.Delete)
+                {
+                    var xViewModel = (MainWindowViewModel) DataContext;
+
+                    if (xViewModel.SelectedDestination != null)
+                        RemoveDestinationButtonClick (sender, e);
+                }
+            }
+
+            catch (Exception xException)
+            {
+                Utility.TryHandleException (this, xException);
+            }
+        }
+
+        private void DestinationsListBoxSelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var xViewModel = (MainWindowViewModel) DataContext;
+
+                if (xViewModel.SelectedDestination != null)
+                {
+                    if (Directory.Exists (xViewModel.SelectedDestination.Path) == false)
+                        System.Windows.MessageBox.Show (this, "Destination does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
